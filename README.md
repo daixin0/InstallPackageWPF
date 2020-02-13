@@ -1,0 +1,2 @@
+# InstallPackageWPF
+WPF Custom Setup
