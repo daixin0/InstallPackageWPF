@@ -13,8 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicTeachingWindow", "Musi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sponsor", "Sponsor", "{1D413286-DED0-4CCA-AD0B-FC13C00619BD}"
 	ProjectSection(SolutionItems) = preProject
-		Sponsor\微信支付.JPG = Sponsor\微信支付.JPG
-		Sponsor\支付宝支付.JPG = Sponsor\支付宝支付.JPG
+		Sponsor\weixin.JPG = Sponsor\weixin.JPG
+		Sponsor\zhifubao.JPG = Sponsor\zhifubao.JPG
 	EndProjectSection
 EndProject
 Global
