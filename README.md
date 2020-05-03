@@ -11,7 +11,7 @@ WPF Custom Setup
 打包程序功能支持：
 	
 	1.支持写入32位和64位注册表（用来在控制面板中显示和卸载），已自动处理，注册表的key是uuid+BIOSSerialNumber组成
- 	2.内涵粒子动画
+ 	2.内涵粒子动画（在MainWindow.xaml.cs文件中的ChildWindow_Loaded函数中，将CurrentSetupState = SetupState.Default改为CurrentSetupState = SetupState.SetupProgress即可看到粒子动画效果）
    	3.支持任意第三方或自己开发的程序进行打包，将所有文件放入打包程序的Resources目录并设置文件属性（生成操作）为Resource，在打包程序的LocalInstallTesting文件中的CopyAllFile函数中添加执行文件的拷贝代码（代码参照内部已有示例）
    	4.内置.net framework和vc++环境检测
    	5.内置展示软件协议的流文档
