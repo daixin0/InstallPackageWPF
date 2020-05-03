@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{175A6127-2198-444C-AD34-054C98CF9802}</ProjectGuid>
+    <ProjectGuid>{71F2EE55-16C3-40DB-82C1-6D28283108DD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>InstallPackageWPF</RootNamespace>
-    <AssemblyName>InstallPackageWPF</AssemblyName>
+    <RootNamespace>UninstallPackageWPF</RootNamespace>
+    <AssemblyName>UninstallPackageWPF</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\InstallPackage\</OutputPath>
+    <OutputPath>..\Output\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -47,10 +47,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Management" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -68,19 +66,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FlowDocumentInfoUC.xaml.cs">
-      <DependentUpon>FlowDocumentInfoUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LocalInstallTesting.cs" />
-    <Compile Include="Themes\InstallAnimation.cs" />
-    <Compile Include="Themes\InstallAnimationUC.xaml.cs">
-      <DependentUpon>InstallAnimationUC.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="LocalUnInstallTesting.cs" />
     <Compile Include="WindowsBase\ChildWindow.cs" />
-    <Page Include="FlowDocumentInfoUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -98,10 +85,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\InstallAnimationUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\PathButtonStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -116,7 +99,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -140,15 +122,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="Resources\MusicTeachingWindow.exe.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MusicTeachingWindow.exe" />
-    <Resource Include="Resources\UninstallPackageWPF.exe" />
-    <Resource Include="Resources\UpdateWindowProgram.exe" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Environmental\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

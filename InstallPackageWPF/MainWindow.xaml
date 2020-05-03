@@ -1,12 +1,1499 @@
-﻿<Window x:Class="InstallPackageWPF.MainWindow"
+﻿<lib:ChildWindow x:Class="InstallPackageWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lib="clr-namespace:InstallPackageWPF.WindowsBase"
+                  xmlns:animation="clr-namespace:InstallPackageWPF.Themes"
         xmlns:local="clr-namespace:InstallPackageWPF"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        mc:Ignorable="d" Loaded="ChildWindow_Loaded" WindowStartupLocation="CenterScreen"
+        Title="安装程序" Height="430" Width="620">
+    <lib:ChildWindow.Resources>
+        <PathGeometry x:Key="pathLogo">M179.2 1024C81.454545 1024 0 944.872727 0 844.8s79.127273-179.2 179.2-179.2c39.563636 0 76.8 13.963636 109.381818 37.236364l9.309091 6.981818V134.981818c0-34.909091 27.927273-62.836364 60.509091-62.836363l598.109091-69.818182h4.654545C993.745455 0 1024 27.927273 1024 62.836364v672.581818c0 48.872727-18.618182 93.090909-53.527273 125.672727-32.581818 32.581818-79.127273 51.2-125.672727 51.2-97.745455 0-179.2-79.127273-179.2-179.2 0-97.745455 79.127273-179.2 179.2-179.2 39.563636 0 79.127273 13.963636 109.381818 37.236364l9.309091 6.981818V286.254545l-605.090909 65.163637v493.381818c-2.327273 100.072727-81.454545 179.2-179.2 179.2z m0-295.563636c-65.163636 0-118.690909 53.527273-118.690909 118.690909s53.527273 118.690909 118.690909 118.690909 118.690909-53.527273 118.690909-118.690909c-2.327273-67.490909-53.527273-118.690909-118.690909-118.690909z m665.6-111.709091c-65.163636 0-118.690909 53.527273-118.690909 118.690909s53.527273 118.690909 118.690909 118.690909 118.690909-53.527273 118.690909-118.690909-53.527273-118.690909-118.690909-118.690909z m-488.727273-325.818182l605.090909-65.163636V60.509091l-598.109091 69.818182h-6.981818v160.581818z</PathGeometry>
+        <!-- 文件夹 -->
+        <PathGeometry x:Key="pathFolder1">M799.5392 363.008h71.68v452.8128h-71.68z</PathGeometry>
+        <PathGeometry x:Key="pathFolder2">M871.2192 456.192h-655.36V303.8208h279.04l48.64 61.44h327.68v90.9312z</PathGeometry>
+        <PathGeometry x:Key="pathFolder3">M881.4592 826.0608h-675.84v-532.48h294.6048l43.52 61.44h337.92z m-655.36-20.48h634.88v-430.08h-327.68l-43.52-61.44H226.0992z</PathGeometry>
+        <PathGeometry x:Key="pathFolder4">M820.0192 824.7296h-614.4V445.952h614.4v267.4688h-20.48V466.432h-573.44v337.8176h573.44v-47.3088h20.48v67.7888z</PathGeometry>
+        <PathGeometry x:Key="pathFolder5">M295.5264 363.008h30.72v30.72h-30.72zM356.9664 363.008h61.44v30.72h-61.44z</PathGeometry>
+        <!-- 安装完成 -->
+        <PathGeometry x:Key="pathSetup1">M953.8 452.3c-10-12-28-13.6-40-3.6L679.4 644.5l-77.1-92.3c-10-12-28-13.6-40-3.6s-13.6 28-3.6 40L652.6 701c2.7 3.2 6 5.6 9.5 7.3 10 5.8 23.1 5.2 32.5-2.6l255.5-213.5c12.1-9.9 13.7-27.9 3.7-39.9z</PathGeometry>
+        <PathGeometry x:Key="pathSetup2">M521.2 673.4H247.5c-74 0-137.3-55.8-144.2-127.1-3.4-40.3 9.7-78.7 36.8-108.1 26.7-29.1 64.8-45.7 104.4-45.7h12.9l28.4 1.8 8.9-26.7c31.7-90.7 114.8-149.2 211.8-149.2C632 218.4 734 320.5 734 445.9v7.3c0 12.5 8.7 21.2 21.2 21.2s21.2-8.7 21.2-21.2v-7.3c0-36.3-7.2-71.6-21.3-104.9-13.6-32.1-33.2-61-58-85.8-24.8-24.8-53.7-44.4-85.8-58-33.3-14.1-68.6-21.3-104.9-21.3-57.2 0-111.3 17.1-156.4 49.5-43.6 31.3-76.1 74.8-94.2 126.1h-9.9c-55.7 0-108 24.5-143.5 67.2-16.8 20.2-28.7 43.1-35.5 68-7.1 26.2-8.2 53.2-3.1 80.4 8 42.3 31.2 80.4 65.3 107.5 33.6 26.6 76.1 41.3 119.7 41.3H521c12.5 0 21.2-8.7 21.2-21.2s-8.5-21.3-21-21.3z</PathGeometry>
+
+    </lib:ChildWindow.Resources>
+    <Grid Margin="10" Effect="{DynamicResource ShadowWindow}">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Background="#FFF8F8F8" CornerRadius="5">
+            <Grid>
+                <Border Background="#FF0078E6" CornerRadius="5,5,0,0">
+                    <Grid>
+                        <StackPanel Margin="8,0,8,0" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <StackPanel VerticalAlignment="Bottom">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                                <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Grid Visibility="{Binding Default,Converter={StaticResource conBoolAsVisiable}}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,-100,0,0" HorizontalAlignment="Center">
+                        <Path Width="35" Height="40" Stretch="Fill" Fill="#FFFEFFFF" Data="{DynamicResource pathLogo}"></Path>
+                        <TextBlock Margin="15,0,0,0" Text="音 乐 教 学 云 平 台" FontSize="25" Foreground="#FFFFFFFE" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <Button Name="btnInstall1" Click="btnInstall_Click" Content="立 即 安 装" Margin="0,60,0,0" FontSize="18" Width="200" Height="50"></Button>
+                </Grid>
+                <Grid Visibility="{Binding CustomPath,Converter={StaticResource conBoolAsVisiable}}">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,-100,0,0" HorizontalAlignment="Center">
+                        <Path Width="35" Height="40" Stretch="Fill" Fill="#FFFEFFFF" Data="{DynamicResource pathLogo}"></Path>
+                        <TextBlock Margin="15,0,0,0" Text="音 乐 教 学 云 平 台" FontSize="25" Foreground="#FFFFFFFE" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <Button Name="btnInstall2" Click="btnInstall_Click" Content="立 即 安 装" Margin="0,60,0,0" FontSize="18" Width="200" Height="50"></Button>
+                </Grid>
+                <Grid Visibility="{Binding SetupComplete,Converter={StaticResource conBoolAsVisiable}}">
+                    <Grid VerticalAlignment="Center" Margin="0,-30,0,0" HorizontalAlignment="Center">
+                        <Path Width="50" Height="30" Margin="75,30,0,0" Fill="White" Data="{DynamicResource pathSetup1}"></Path>
+                        <Path Width="85" Height="60" Fill="White" Data="{DynamicResource pathSetup2}"></Path>
+                    </Grid>
+                    <TextBlock Text="安装完成" Margin="20,100,0,0" Foreground="#FFFDFDFF" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"></TextBlock>
+                </Grid>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1" Visibility="{Binding Default,Converter={StaticResource conBoolAsVisiable}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Background="#FFF8F8F8">
+                <StackPanel HorizontalAlignment="Center" Margin="0,5,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="#FF888888" Text="安装位置   " VerticalAlignment="Center"></TextBlock>
+                        <TextBlock Foreground="#FF888888" Text="{Binding InstallPath}" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <TextBlock Margin="0,3,0,0" Foreground="{Binding ColorDisk}" Text="{Binding DiskSize}"></TextBlock>
+                </StackPanel>
+            </Grid>
+
+            <Border Grid.Row="1" Background="#FFF8F8F8" VerticalAlignment="Top" CornerRadius="0,0,5,5">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <CheckBox IsChecked="{Binding IsAgree,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="#FF888888" Margin="10,0,0,8" Content="已阅读并同意音乐教学云平台的 " VerticalAlignment="Bottom"></CheckBox>
+                        <Button Name="btnUserAgreement" Click="btnUserAgreement_Click" Foreground="#FFF86F01" Margin="5,0,0,8" Style="{StaticResource LinkButtonStyle}" VerticalAlignment="Bottom" Content="用户许可协议"></Button>
+                    </StackPanel>
+                    <Button Name="btnCustomSetup" Click="btnCustomSetup_Click" HorizontalAlignment="Right" Foreground="#FF888888" Margin="0,0,25,8" Style="{StaticResource LinkButtonStyle}" VerticalAlignment="Bottom" Content="自定义安装"></Button>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Visibility="{Binding CustomPath,Converter={StaticResource conBoolAsVisiable}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Background="#FFF8F8F8">
+                <StackPanel HorizontalAlignment="Center" Margin="0,5,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="#FF888888" Text="安装位置   " VerticalAlignment="Center"></TextBlock>
+                        <TextBox Foreground="#FF888888" Text="{Binding InstallPath,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"></TextBox>
+                        <Button x:Name="btnSelectFolder" Click="btnSelectFolder_Click" Margin="6,0,0,0" Height="18" Width="18" Style="{StaticResource PathButtonStyle}">
+                            <Grid>
+                                <Path Fill="#67DCD1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="2.5" Height="14" Data="{DynamicResource pathFolder1}"></Path>
+                                <Path Fill="#67DCD1" Height="6" VerticalAlignment="Top" Data="{DynamicResource pathFolder2}"></Path>
+                                <Path Fill="#3F44EC" Data="{DynamicResource pathFolder3}"></Path>
+                                <Path Fill="#3F44EC" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="16" Height="12" Data="{DynamicResource pathFolder4}"></Path>
+                                <Path Fill="#FDD55B" Height="1" Width="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,3,0,0" Data="{DynamicResource pathFolder5}"></Path>
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+                    <TextBlock Margin="0,3,0,0" Foreground="{Binding ColorDisk}" Text="{Binding DiskSize}"></TextBlock>
+                </StackPanel>
+
+            </Grid>
+            <Border Grid.Row="1" Background="#FFF8F8F8" VerticalAlignment="Top" CornerRadius="0,0,5,5">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <CheckBox IsChecked="{Binding IsAgree,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="#FF888888" Margin="10,0,0,8" Content="已阅读并同意音乐教学云平台的 " VerticalAlignment="Bottom"></CheckBox>
+                        <Button Click="btnUserAgreement_Click" Foreground="#FFF86F01" Margin="5,0,0,8" Style="{StaticResource LinkButtonStyle}" VerticalAlignment="Bottom" Content="用户许可协议"></Button>
+                    </StackPanel>
+                    <Button Name="btnCancl" Click="btnCancl_Click" HorizontalAlignment="Right" Foreground="#FF888888" Margin="0,0,25,8" Style="{StaticResource LinkButtonStyle}" VerticalAlignment="Bottom" Content="返回"></Button>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Visibility="{Binding SetupComplete,Converter={StaticResource conBoolAsVisiable}}">
+            <Border Background="#FFF8F8F8" CornerRadius="0,0,5,5">
+                <Button Name="btnComplete" Margin="30,0,0,0" Click="btnComplete_Click" BorderBrush="#FF5F5F5F" Background="#FFF1F1F1" Foreground="#FF5F5F5F" Content="立即使用" Width="150" Height="50"></Button>
+            </Border>
+        </Grid>
+        <Border Grid.RowSpan="2" Visibility="{Binding Agreement,Converter={StaticResource conBoolAsVisiable}}" Background="#FFF8F8F8" CornerRadius="5" Margin="15,30,15,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <!--<RowDefinition Height="60"></RowDefinition>-->
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--<TextBlock Text="音乐教学云平台用户协议" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF575757" FontSize="18"></TextBlock>-->
+                <Grid Grid.Row="0">
+                    <local:FlowDocumentInfoUC Margin="0,10,0,0"></local:FlowDocumentInfoUC>
+                </Grid>
+                <Button x:Name="btnAgree" Click="btnAgree_Click" Grid.Row="1" Foreground="#FF646464" Background="#FFEFEFEF" Width="160" Height="45" BorderBrush="#FF646464" Content="同意"></Button>
+            </Grid>
+        </Border>
+        <Grid Visibility="{Binding SetupProgress,Converter={StaticResource conBoolAsVisiable}}" Grid.RowSpan="2">
+            <Border Background="#FF0078E6" CornerRadius="5">
+                <Grid>
+                    <StackPanel Margin="8,0,8,0" Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <StackPanel VerticalAlignment="Bottom">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom" Margin="1,0,0,0">
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                            <Rectangle Width="8" Height="3" Fill="#FF4BA1EE" Margin="0,1,0,0"></Rectangle>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Path Margin="0,-150,0,0" Fill="#FFE1FFFF" Width="60" Height="70" Data="{DynamicResource pathLogo}">
+                <Path.Effect>
+                    <DropShadowEffect BlurRadius="8 "
+                      Direction="2" 
+                      ShadowDepth="-2" Color="White"/>
+                </Path.Effect>
+            </Path>
+            <TextBlock Margin="0,60,0,0" Foreground="#FFFAFBFF" FontSize="16" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Center" Text="即将开启全新的音乐教学模式"></TextBlock>
+            <ProgressBar Height="10" Margin="80,180,80,0" Value="{Binding InstallProgress}" Minimum="0" Maximum="100"></ProgressBar>
+            <animation:InstallAnimationUC Height="350" Width="460" Margin="0,-120,0,0"></animation:InstallAnimationUC>
+        </Grid>
     </Grid>
-</Window>
+</lib:ChildWindow>

@@ -1,0 +1,307 @@
+﻿<UserControl x:Class="InstallPackageWPF.FlowDocumentInfoUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InstallPackageWPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="TitleParagraph" TargetType="{x:Type Paragraph}">
+            <Setter Property="Paragraph.FontFamily" Value="Calibri" />
+            <Setter Property="Paragraph.FontSize" Value="14pt" />
+            <Setter Property="Paragraph.FontWeight" Value="Bold" />
+            <Setter Property="Paragraph.TextAlignment" Value="Left" />
+        </Style>
+        <Style TargetType="{x:Type Paragraph}">
+            <Setter Property="Paragraph.FontFamily" Value="Calibri" />
+            <Setter Property="Paragraph.FontSize" Value="11pt" />
+            <Setter Property="Paragraph.Foreground" Value="Black" />
+        </Style>
+        <Style x:Key="FloatingContent">
+            <Setter Property="Paragraph.Foreground" Value="White" />
+            <Setter Property="Paragraph.Background" Value="LightBlue" />
+            <Setter Property="Paragraph.BorderBrush" Value="Gray" />
+            <Setter Property="Paragraph.BorderThickness" Value="1" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <!--<FlowDocumentReader BorderThickness="1" BorderBrush="Blue">-->
+        <FlowDocumentScrollViewer>
+            <FlowDocument >
+                <Section>
+                    <Paragraph TextAlignment="Center" FontSize="22">
+                        <Bold>“某某”软件用户协议</Bold>
+                    </Paragraph>
+                </Section>
+                <Section>
+                    <Paragraph Style="{StaticResource TitleParagraph}">
+                        <Bold>一、用户协议的接受</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>1.1</Bold>
+                        <Run> 本用户协议（简称“协议”）系由您与某某有限公司（以下简称“XX”）所订立的相关权利义务规范，用以描述XX通过“某某”软件向您提供服务及您使用“某某”软件服务所涉及的详细规定。因此，请您于开始使用“某某”前，切实详细地阅读本协议的所有内容。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>1.2</Bold>
+                        <Run>只要您开始使用XX提供的“某某”软件，即表示您已无条件接受了本协议的相关规定及XX就此公布的各项管理规定，并愿意受其约束。如果发生纠纷，您应自行承担事实上未认真阅读本条款的责任，不得以未仔细阅读为由进行抗辩。阅读本协议的过程中，如果用户不同意本协议或其中任何条款约定，用户应立即停止安装程序。</Run>
+                    </Paragraph>
+                </Section>
+                <Section>
+                    <Paragraph Style="{StaticResource TitleParagraph}">
+                        <Bold>二、服务内容</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>2.1</Bold>
+                        <Run>“某某”软件是XX提供的一款音乐教学软件，XX通过“某某”软件向广大用户提供音乐教学服务（以下简称“XX服务”）。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>2.2</Bold>
+                        <Run>除非另有明确约定，“某某”软件增强或强化目前服务功能的所有新功能，包括新的产品以及新的服务，均自动适用本协议的约定。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>2.3</Bold>
+                        <Run>XX向您提供免费服务和收费服务。在提供收费服务前，XX会向您给予明确提示，只有在您根据提示指示选择同意支付相关费用后，XX才会向您提供该项收费服务。如果您拒绝支付相关费用，XX有权不向您提供该项收费服务。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>2.4</Bold>
+                        <Run>您应当自行负担使用XX服务所需的设备（例如个人手机、及其他与接入互联网或移动网有关的装置）及所需的费用（如为接入互联网而支付的电话费及上网费、为使用移动网而支付的手机费）。</Run>
+                    </Paragraph>
+                </Section>
+                <Section>
+                    <Paragraph Style="{StaticResource TitleParagraph}">
+                        <Bold>三、用户账号</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>3.1</Bold>
+                        <Run>您在“某某”软件进行激活时，须提供真实、有效的身份识别资料，并应在前述资料发生变更时，及时进行线上更新。若您所提供的资料与事实不符或所提供的资料业已变更而未更新或有任何误导之嫌而导致XX无法为您提供或继续提供服务的，您应自行承担由此引发的损失而与XX无关。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>3.2</Bold>
+                        <Run>您须了解和认可，XX账号的使用权仅归属于原始激活人。未经XX的事先书面同意，您不得以任何形式将自身XX账号及密码转让、赠予、出借、售卖予第三方或者以其他方式许可非初始注册人对其进行使用，否则XX有权封禁、删除该账号。如您并非当前所使用XX账号的原始激活人，您应立即停止对该账号的一切使用及操作，同时XX有权依原始激活人之请求或依自身判断将该账号重新交予原始激活人使用，由此引发的全部责任及损失与XX无关。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>3.3</Bold>
+                        <Run>您有义务妥善保管在激活时获得的账号及密码，如因黑客、第三人行为或您自身保管疏忽导致账号、密码遭他人非法使用并给您造成损失的，XX就此不承任何责任。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>3.4</Bold>
+                        <Run>如您发现自身账号遭他人非法使用或有异常使用的情形，应立即通知XX，并提供与原始激活人相一致的个人有效身份信息。XX在核实您所提供的个人有效身份信息后，将尽可能为您维护自身合法权利提供必要协助，但XX并不承诺您一定能通过该途径找回XX账号。</Run>
+                    </Paragraph>
+                </Section>
+                <Section>
+                    <Paragraph Style="{StaticResource TitleParagraph}">
+                        <Bold>四、使用规则</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>4.1</Bold>
+                        <Run>您应就自身使用XX服务的行为负责，并保证在使用XX服务的过程中遵循以下原则：</Run>
+                        <LineBreak/>
+                        <Bold>（1）</Bold>
+                        <Run>遵守中国有关的法律和法规；</Run>
+                        <LineBreak/>
+                        <Bold>（2）</Bold>
+                        <Run>遵守本条款及XX发布的相关管理规定；</Run>
+                        <LineBreak/>
+                        <Bold>（3）</Bold>
+                        <Run>不得以任何形式侵犯第三方及XX的合法利益；</Run>
+                        <LineBreak/>
+                        <Bold>（4）</Bold>
+                        <Run>不得将XX提供的服务用于任何非法或侵权活动，</Run>
+                        <LineBreak/>
+                        <Run>包括但不限于将其用于展示、传播包含色情、种族主义、低级趣味、淫秽、诽谤中伤、污辱性质的资料，以及传播任何针对宗教、民族传统、人种、性别、年龄的各种仇恨、歧视和偏见的内容。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>4.2</Bold>
+                        <Run>XX有权对您使用服务的情况进行审查和监督，如XX根据自身独立判断认为您存在违法或违约行为的，有权要求您纠正相应行为，并采取一切必要的措施（包括但不限于更改或删除您发布或上传的内容、暂停或终止您使用XX服务的权利等）以减轻您行为造成的影响。但您确认，XX的审查行为并不为其设置任何责任，也不免除您的任何义务。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>4.3</Bold>
+                        <Run>您应保证自身对“某某”软件的使用行为的合法性、正当性，且不得对客户端进行反编译、反汇编、破解等行为。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>4.4</Bold>
+                        <Run>请勿滥用或干扰XX软件服务，包括但不限于将XX软件服务用于非法目的，篡改与XX软件相关的计算机代码，使用与XX相关的标志或文字，攻击XX的服务器，删除、隐藏或修改任何与XX软件服务相关的声明等。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>4.5</Bold>
+                        <Run>您了解并认可，在您使用XX服务公开发表内容(例如评论)时，须遵守社会公序良德和相关法律法规，且不得发布和上传如下内容：</Run>
+                        <LineBreak/>
+                        <Bold>（1）</Bold>
+                        <Run>违反宪法确定的基本原则的</Run>
+                        <LineBreak/>
+                        <Bold>（2）</Bold>
+                        <Run>违反我国法律、法规及其它规定的</Run>
+                        <LineBreak/>
+                        <Bold>（3）</Bold>
+                        <Run>违背社会公序良俗，有损社会公共利益的</Run>
+                        <LineBreak/>
+                        <Bold>（4）</Bold>
+                        <Run>侵害第三方合法权益的文件或信息，包括但不限于病毒代码、黑客程序、软件破解注册信息等</Run>
+                        <LineBreak/>
+                        <Bold>（5）</Bold>
+                        <Run>未获合法授权的文章、图片、音乐、视频、应用等</Run>
+                        <LineBreak/>
+                        <Bold>（6）</Bold>
+                        <Run>广告内容或链接</Run>
+                        <LineBreak/>
+                        <Bold>（7）</Bold>
+                        <Run>违反XX信息发布政策或损害XX合法权益的</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>4.6</Bold>
+                        <Run>XX有权对您发布和上传的内容进行审核，如XX根据自身独立判断认为您所发布、上传的内容包含前述情况的，有权直接删除相关内容，且无需另行通知您。您在此确认，XX的审核行为并不为其设置任何义务，也不能免除您的任何责任。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>4.7</Bold>
+                        <Run>由于您发布上传的内容带来的法律纠纷或其它后果，需要由您自行承担。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>4.8</Bold>
+                        <Run>您在使用XX过程中创作内容所包含的权利将依法归您自行所有。但您应了解，对于您通过XX服务发布、上传至可公开获取区域的任何内容，均视为您已同意授权XX获得相应内容在全世界范围内免费的、永久性的、不可撤销的、非独家的和完全再许可的权利和许可，以使用、复制、修改、改编、出版、翻译、据以创作衍生作品、传播、表演和展示此等内容（整体或部分），和/或将此等内容编入当前已知的或以后开发的其他任何形式的作品、媒体或技术中。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>4.9</Bold>
+                        <Run>如果XX根据自身独立判断认为您对XX的使用超出了合理范围，我们有权对您就XX服务的使用进行限制，您应自行承担由此引发的责任及损失。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>4.10</Bold>
+                        <Run>您应保证其在注册时和提交订单时所提供的姓名（名称）、联系方式、联系地址等全部信息真实、完整、准确，并当上述信息发生变更时及时进行更新提供给 “某某”软件的信息。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>4.11</Bold>
+                        <Run>您不得以虚构事实等方式恶意诋毁 “某某”软件的名誉。</Run>
+                    </Paragraph>
+                </Section>
+                <Section>
+                    <Paragraph Style="{StaticResource TitleParagraph}">
+                        <Bold>五、隐私</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>5.1</Bold>
+                        <Run>XX承诺将采取必要措施保护您存放在XX服务器上的个人数据及隐私信息的安全。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>5.2</Bold>
+                        <Run>除本协议约定的除外情况，XX保证不对外公开或向第三方提供、公开或共享您的个人数据及隐私信息。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>5.3</Bold>
+                        <Run>在以下情况下，XX对您个人数据及隐私信息的披露将不视为违约，具体包括：</Run>
+                        <LineBreak/>
+                        <Bold>（1）</Bold>
+                        <Run>XX已获得您的明确授权；</Run>
+                        <LineBreak/>
+                        <Bold>（2）</Bold>
+                        <Run>根据有关的法律法规要求，XX负有披露义务的；</Run>
+                        <LineBreak/>
+                        <Bold>（3）</Bold>
+                        <Run>司法机关或行政机关基于法定程序要求XX提供的；</Run>
+                        <LineBreak/>
+                        <Bold>（4）</Bold>
+                        <Run>为维护社会公共利益及XX合法权益，在合理范围内进行披露的。</Run>
+                        <LineBreak/>
+                        <Bold>（5）</Bold>
+                        <Run>XX可能会与第三方合作向用户提供相关的网络服务或使用其数据收集工具用以完善自身服务，在此情况下，如该第三方同意承担与XX同等的隐私保护责任的，则XX可在合理范围内对您的信息进行披露。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>5.4</Bold>
+                        <Run>在不披露您的个人数据及隐私的前提下，XX有权对XX整体用户数据信息进行技术分析，并对已进行分析、整理后的统计数据进行利用。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>5.5</Bold>
+                        <Run>尽管XX已为用户的隐私权保护做了极大的努力，但是仍然不能保证现有的安全技术措施使您的个人数据及隐私等不受任何形式的损失。您对上述情况充分知情，且不会因此追究XX的法律责任。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>5.6</Bold>
+                        <Run>其他的隐私政策约定详见附件，即点击链接</Run>
+                        <Hyperlink Click="Hyperlink_Click" NavigateUri="">【法律声明及隐私权政策】</Hyperlink>
+                        <Run>即可查看。</Run>
+                    </Paragraph>
+                </Section>
+                <Section>
+                    <Paragraph Style="{StaticResource TitleParagraph}">
+                        <Bold>六、知识产权</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>6.1</Bold>
+                        <Run>XX服务的相关著作权、专利权、商标、商业秘密及其它任何所有权或权利（包括但不限于“某某”软件等），均由XX独占性所有。非经XX的同意，您不得擅自披露或使用。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>6.2</Bold>
+                        <Run>使用XX软件并不会使您获得或拥有任何属于XX或第三方的知识产权。XX软件中链接的视频作品的所有权利均属于作者，请勿传播、复制、改编、修改或以其他方式不当使用他人视频作品，包括但不限于转载、链接、下载、复制、编辑、修改、变更、上传、分享、发行、表演、衍生其他作品、创作衍生品、诋毁、破坏作品技术保护措施等。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>6.3</Bold>
+                        <Run>具体可参见</Run>
+                        <Hyperlink Click="Hyperlink_Click" NavigateUri="">《“某某”软件权利说明》</Hyperlink>
+                        <Run>。</Run>
+                    </Paragraph>
+                </Section>
+                <Section>
+                    <Paragraph Style="{StaticResource TitleParagraph}">
+                        <Bold>七、免责声明</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>7.1</Bold>
+                        <Run>“某某”软件所提供的第三方网站视频内容均来自于第三方网站，我们对其中任何内容的合法性、准确性、完整性和可靠性概不负责，亦不承担任何法律责任，亦不对该等链接到的内容作出任何明示或默示的保证，包括但不限于有关所有权、质量、没有侵犯第三方权利、没有病毒的保证。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>7.2</Bold>
+                        <Run>XX将以最大努力维护软件正常运行，但您应对使用XX软件的结果自行承担风险，XX对此不做任何承诺或保证，不保证服务不中断，不保证您所浏览的视频内容的安全性、准确性、完整性、合法性及可靠性，不保证第三方网站是否对其所提供的视频作品均拥有合法、有效、完整的知识产权，对您的数据损失、丢失或服务停止不承担任何责任，由于网络带宽、手机（或其他电子设备）硬件限制等任何原因造成您无法正常使用XX软件，XX不承担任何法律责任。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>7.3</Bold>
+                        <Run>“某某”软件中一些特别有风险的功能，我们会额外请您确认。如果您点选确认或实际使用相应功能的，将视为您已了解并愿意承担相应风险。如您由此遭受实际损失的，须自行承担有关损失。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>7.4</Bold>
+                        <Run>XX在此特别提请您注意：XX为用户提供上传空间服务及为用户提供应用程序的搜索服务，XX不会对用户上传的作品内容作任何形式的编辑修改，自身不永久存储、控制、编辑或修改被链接的第三方市场的信息内容或其表现形式。任何经由XX服务而发布、上传的文字、资讯、资料、音乐、照片、图形、视讯、信息或其它资料（以下简称「内容 」），无论系公开还是私下传送，均由内容提供者承担责任。如果您发现XX上展示的内容侵犯了您的合法权利，请根据本条款附件《知识产权保护声明》的相关规定，按指定格式向我们发送权利通知，我们会按照法律规定做出相应处理。</Run>
+                    </Paragraph>
+                </Section>
+                <Section>
+                    <Paragraph Style="{StaticResource TitleParagraph}">
+                        <Bold>八、服务变更、中断与终止</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>8.1</Bold>
+                        <Run>XX所提供的服务存在因包括不可抗力、计算机病毒或黑客攻击、系统不稳定、您所在位置、通信线路、XX自身运营调整、合作伙伴调整等因素造成的服务中断或不能满足您要求的风险。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>8.2</Bold>
+                        <Run>XX可能随时变更、中断或终止部分或全部的服务且无需另行对您进行通知，请注意定期对您存放在XX服务上的数据进行备份，以避免损失。</Run>
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>8.3</Bold>
+                        <Run>如您欲使用XX提供的服务，须承担以上风险，XX对您或任何第三人由此遭受的损害均不承担赔偿责任。</Run>
+                    </Paragraph>
+                </Section>
+                <Section>
+                    <Paragraph Style="{StaticResource TitleParagraph}">
+                        <Bold>九、法律适用和争议解决</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        <Run>本协议的解释、效力及纠纷的解决，适用于中华人民共和国（不包括港澳台地区）法律。因使用XX服务产生的或与此相关的纠纷，XX及您均有权将其提交至北京仲裁委员会通过仲裁方式解决。仲裁裁决是终局的，对各方均有约束力。</Run>
+                    </Paragraph>
+                </Section>
+                <Section>
+                    <Paragraph Style="{StaticResource TitleParagraph}">
+                        <Bold>十、本协议的变更和修改</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        <Run>XX有权随时对本协议进行修改，并且一旦发生协议条款的变更，XX将在相关页面上提示修改的内容；您如果不同意本协议的修改，应当立即停止使用XX服务；如果您选择在本协议变更后继续使用XX服务，则视为您已经接受并愿意遵守本协议的修改。</Run>
+                    </Paragraph>
+                </Section>
+                <Section>
+                    <Paragraph Style="{StaticResource TitleParagraph}">
+                        <Bold>十一、附则</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        <Run>您均已认真阅读本协议中全部条款及“某某”软件发布的其他全部服务条款和操作规则的内容，对本协议及前述服务条款和规则均已知晓、理解并接受，同意将其作为确定双方权利义务的依据。</Run>
+                    </Paragraph>
+                </Section>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+        <!--</FlowDocumentReader>-->
+    </Grid>
+</UserControl>

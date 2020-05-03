@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallPackageWPF", "InstallPackageWPF\InstallPackageWPF.csproj", "{175A6127-2198-444C-AD34-054C98CF9802}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UninstallPackageWPF", "UninstallPackageWPF\UninstallPackageWPF.csproj", "{71F2EE55-16C3-40DB-82C1-6D28283108DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateWindowProgram", "UpdateWindowProgram\UpdateWindowProgram.csproj", "{2DF6F7CA-C61A-4705-A38C-CBC0C38BA332}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicTeachingWindow", "MusicTeachingWindow\MusicTeachingWindow.csproj", "{0C9A8781-C147-4839-8ADD-9FFF3746F8D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{175A6127-2198-444C-AD34-054C98CF9802}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{175A6127-2198-444C-AD34-054C98CF9802}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{175A6127-2198-444C-AD34-054C98CF9802}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71F2EE55-16C3-40DB-82C1-6D28283108DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71F2EE55-16C3-40DB-82C1-6D28283108DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71F2EE55-16C3-40DB-82C1-6D28283108DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71F2EE55-16C3-40DB-82C1-6D28283108DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DF6F7CA-C61A-4705-A38C-CBC0C38BA332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DF6F7CA-C61A-4705-A38C-CBC0C38BA332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DF6F7CA-C61A-4705-A38C-CBC0C38BA332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DF6F7CA-C61A-4705-A38C-CBC0C38BA332}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C9A8781-C147-4839-8ADD-9FFF3746F8D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C9A8781-C147-4839-8ADD-9FFF3746F8D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C9A8781-C147-4839-8ADD-9FFF3746F8D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C9A8781-C147-4839-8ADD-9FFF3746F8D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
