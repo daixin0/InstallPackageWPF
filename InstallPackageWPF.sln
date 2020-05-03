@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateWindowProgram", "Upda
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicTeachingWindow", "MusicTeachingWindow\MusicTeachingWindow.csproj", "{0C9A8781-C147-4839-8ADD-9FFF3746F8D4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sponsor", "Sponsor", "{1D413286-DED0-4CCA-AD0B-FC13C00619BD}"
+	ProjectSection(SolutionItems) = preProject
+		Sponsor\微信支付.JPG = Sponsor\微信支付.JPG
+		Sponsor\支付宝支付.JPG = Sponsor\支付宝支付.JPG
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
