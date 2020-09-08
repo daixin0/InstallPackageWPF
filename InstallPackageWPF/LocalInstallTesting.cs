@@ -293,6 +293,10 @@ namespace InstallPackageWPF
         /// </summary>
         public const string UninstallExe = "UninstallPackageWPF.exe";
         /// <summary>
+        /// 程序名称
+        /// </summary>
+        public const string StartExe = "MusicTeachingWindow.exe";
+        /// <summary>
         /// 显示名称
         /// </summary>
         public const string DisplayName = "音乐教学客户端";
@@ -329,9 +333,17 @@ namespace InstallPackageWPF
                 MessageBox.Show(ex.Message);
             }
         }
-        public static void CopyFile(string targetPath, string sourceFile)
+        /// <summary>
+        /// 将文件属性设置为“嵌入的资源”的文件拷贝到安装目录
+        /// </summary>
+        /// <param name="targetPath"></param>
+        /// <param name="sourceFile"></param>
+        /// <param name="assemblyName"></param>
+        public static void CopyEmbedFile(string targetPath, string sourceFile,string assemblyName)
         {
-            Stream stream = System.Windows.Application.GetResourceStream(new Uri(@"/InstallPackageWPF;component/Resources/" + sourceFile, UriKind.Relative)).Stream;
+            Assembly assm = Assembly.GetExecutingAssembly();
+            Stream stream = assm.GetManifestResourceStream(assemblyName);
+
             if (!Directory.Exists(targetPath + "/" + Path.GetDirectoryName(sourceFile)))
             {
                 Directory.CreateDirectory(targetPath + "/" + Path.GetDirectoryName(sourceFile));
@@ -354,20 +366,52 @@ namespace InstallPackageWPF
             }
 
         }
+        /// <summary>
+        /// 将文件属性设置为“Resource”的文件拷贝到安装目录
+        /// </summary>
+        /// <param name="targetPath"></param>
+        /// <param name="sourceFile"></param>
+        /// <param name="assemblyName"></param>
+        public static void CopyResourceFile(string targetPath, string sourceFile)
+        {
+            Stream stream = System.Windows.Application.GetResourceStream(new Uri(@"/InstallPackageWPF;component/Resources/" + sourceFile, UriKind.Relative)).Stream;
+            if (!Directory.Exists(targetPath + "/" + Path.GetDirectoryName(sourceFile)))
+            {
+                Directory.CreateDirectory(targetPath + "/" + Path.GetDirectoryName(sourceFile));
+            }
+            try
+            {
+                byte[] bytes = new byte[stream.Length];
+                stream.Read(bytes, 0, bytes.Length);
+                stream.Seek(0, SeekOrigin.Begin);
+                FileStream fs = new FileStream(targetPath + "/" + sourceFile, FileMode.Create);
+                BinaryWriter bw = new BinaryWriter(fs);
+                bw.Write(bytes);
+                bw.Close();
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
         public static void CopyAllFile(string targetPath, Action<int> progress)
         {
-            progress(81);
-           
-            progress(83);
-           
-            progress(85);
-            CopyFile(targetPath, "MusicTeachingWindow.exe");
-            CopyFile(targetPath, "UpdateWindowProgram.exe");
-            progress(88);
-            CopyFile(targetPath, "UninstallPackageWPF.exe");
-            CopyFile(targetPath, "MusicTeachingWindow.exe.config");
+            string dirs = "InstallPackageWPF.Resources";
+            string[] resourceStr = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+            int resourceCount = resourceStr.Length - 2;
+            for (int i = 0; i < resourceStr.Length; i++)
+            {
+                string item = resourceStr[i];
+                if (item.Contains(dirs))
+                {
+                    CopyEmbedFile(targetPath, item.Replace(dirs + ".", ""), item);
+                    progress((i + 1) / resourceCount * 60);
+                }
+            }
             RegeditGuid = Guid.NewGuid().ToString();
-            Configuration config = ConfigurationManager.OpenExeConfiguration(targetPath + "\\MusicTeachingWindow.exe");
+            Configuration config = ConfigurationManager.OpenExeConfiguration(targetPath + "\\"+ StartExe);
             config.AppSettings.Settings["StartPath"].Value = targetPath;
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
@@ -380,7 +424,7 @@ namespace InstallPackageWPF
             var shellType = Type.GetTypeFromProgID("WScript.Shell");
             dynamic shell = Activator.CreateInstance(shellType);
             var shortcut = shell.CreateShortcut(desktop + "\\" + DisplayName + ".lnk");
-            shortcut.TargetPath = targetFile + "\\MusicTeachingWindow.exe";
+            shortcut.TargetPath = targetFile + "\\" + StartExe;
             shortcut.WorkingDirectory = targetFile;
             shortcut.Save();
 
@@ -408,7 +452,7 @@ namespace InstallPackageWPF
                 }
             }
             var shortcut = shell.CreateShortcut(startMenu + "\\" + DisplayName + ".lnk");
-            shortcut.TargetPath = targetPath + "\\MusicTeachingWindow.exe";
+            shortcut.TargetPath = targetPath + "\\" + StartExe;
             shortcut.WorkingDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
             shortcut.Save();
         }

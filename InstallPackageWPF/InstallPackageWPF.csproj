@@ -140,12 +140,20 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="Resources\MusicTeachingWindow.exe.config" />
+    <EmbeddedResource Include="Resources\MusicTeachingWindow.exe.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\MusicTeachingWindow.exe" />
-    <Resource Include="Resources\UninstallPackageWPF.exe" />
-    <Resource Include="Resources\UpdateWindowProgram.exe" />
+    <EmbeddedResource Include="Resources\MusicTeachingWindow.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UninstallPackageWPF.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UpdateWindowProgram.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Environmental\" />
