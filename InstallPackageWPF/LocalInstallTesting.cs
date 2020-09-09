@@ -335,6 +335,7 @@ namespace InstallPackageWPF
         }
         /// <summary>
         /// 将文件属性设置为“嵌入的资源”的文件拷贝到安装目录
+        /// 这个方法有限制。你的文件名称和文件夹名称内不能带有符号“.”，因为是通过程序集名称来识别分隔的，程序集的分隔是用“.”，所以加了“.”就无法识别是文件夹名称还是文件名称。
         /// </summary>
         /// <param name="targetPath"></param>
         /// <param name="sourceFile"></param>
@@ -397,7 +398,15 @@ namespace InstallPackageWPF
 
         }
 
-        private static bool IsFile(string targetPath, string[] str,ref string fileName, int index)
+        /// <summary>
+        /// 将程序集名称转路径和文件名
+        /// </summary>
+        /// <param name="targetPath"></param>
+        /// <param name="str"></param>
+        /// <param name="fileName"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        private static bool AssemblyNameConvetPath(string targetPath, string[] str,ref string fileName, int index)
         {
             string path = "";
             if (index >= str.Length)
@@ -433,7 +442,7 @@ namespace InstallPackageWPF
                         fileName = str[index] + "." + fileName;
                 }
 
-                return IsFile(targetPath, str, ref fileName, index - 1);
+                return AssemblyNameConvetPath(targetPath, str, ref fileName, index - 1);
 
             }
 
@@ -442,6 +451,8 @@ namespace InstallPackageWPF
 
         public static void CopyAllFile(string targetPath, Action<int> progress)
         {
+
+            #region 这是动态读取资源文件（你需要将文件的生成操作设置为->嵌入的资源），并写入到目标路径（假如你的文件夹或者文件名称内带有符号“.”导致文件写入和预期不符，请尝试使用手动写入，下方注释的为手动写入。）
             string dirs = "InstallPackageWPF.Resources";
             string[] resourceStr = Assembly.GetExecutingAssembly().GetManifestResourceNames();
             int resourceCount = resourceStr.Length - 2;
@@ -453,7 +464,7 @@ namespace InstallPackageWPF
                     string relativePath = item.Replace(dirs + ".", "");
                     string[] str = relativePath.Split('.');
                     string fileName = "";
-                    if (IsFile(targetPath, str, ref fileName, str.Length - 1))
+                    if (AssemblyNameConvetPath(targetPath, str, ref fileName, str.Length - 1))
                     {
                         CopyEmbedFile(targetPath, fileName, item);
                     }
@@ -465,6 +476,13 @@ namespace InstallPackageWPF
                     progress((i + 1) / resourceCount * 60);
                 }
             }
+            #endregion
+
+            //手动将资源文件写入目标路径，你需要将这些文件的生成操作设置为->Resource
+            //CopyResourceFile(targetPath, "MusicTeachingWindow.exe");
+            //CopyResourceFile(targetPath, "Environmental/MusicTeachingWindow.exe");
+
+
             RegeditGuid = Guid.NewGuid().ToString();
             Configuration config = ConfigurationManager.OpenExeConfiguration(targetPath + "\\" + StartExe);
             config.AppSettings.Settings["StartPath"].Value = targetPath;
