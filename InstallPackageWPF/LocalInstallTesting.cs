@@ -339,7 +339,7 @@ namespace InstallPackageWPF
         /// <param name="targetPath"></param>
         /// <param name="sourceFile"></param>
         /// <param name="assemblyName"></param>
-        public static void CopyEmbedFile(string targetPath, string sourceFile,string assemblyName)
+        public static void CopyEmbedFile(string targetPath, string sourceFile, string assemblyName)
         {
             Assembly assm = Assembly.GetExecutingAssembly();
             Stream stream = assm.GetManifestResourceStream(assemblyName);
@@ -396,6 +396,50 @@ namespace InstallPackageWPF
             }
 
         }
+
+        private static bool IsFile(string targetPath, string[] str,ref string fileName, int index)
+        {
+            string path = "";
+            if (index >= str.Length)
+            {
+                return false;
+            }
+            if (!string.IsNullOrWhiteSpace(fileName))
+            {
+                path = targetPath + "/" + fileName;
+            }
+            try
+            {
+                Path.GetFullPath(path);
+                if (string.IsNullOrWhiteSpace(Path.GetExtension(path)))
+                    throw new Exception();
+                if (index >= 0)
+                    throw new Exception();
+                return true;
+            }
+            catch
+            {
+                if (string.IsNullOrWhiteSpace(fileName))
+                {
+                    fileName = str[index];
+                }
+                else
+                {
+                    if (!Path.GetExtension(fileName).Contains("config") && (index == str.Length - 3) && str.Length >= 3)
+                        fileName = str[index] + "/" + fileName;
+                    else if (Path.GetExtension(fileName).Contains("config") && (index == str.Length - 4) && str.Length >= 4)
+                        fileName = str[index] + "/" + fileName;
+                    else
+                        fileName = str[index] + "." + fileName;
+                }
+
+                return IsFile(targetPath, str, ref fileName, index - 1);
+
+            }
+
+
+        }
+
         public static void CopyAllFile(string targetPath, Action<int> progress)
         {
             string dirs = "InstallPackageWPF.Resources";
@@ -406,12 +450,23 @@ namespace InstallPackageWPF
                 string item = resourceStr[i];
                 if (item.Contains(dirs))
                 {
-                    CopyEmbedFile(targetPath, item.Replace(dirs + ".", ""), item);
+                    string relativePath = item.Replace(dirs + ".", "");
+                    string[] str = relativePath.Split('.');
+                    string fileName = "";
+                    if (IsFile(targetPath, str, ref fileName, str.Length - 1))
+                    {
+                        CopyEmbedFile(targetPath, fileName, item);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
                     progress((i + 1) / resourceCount * 60);
                 }
             }
             RegeditGuid = Guid.NewGuid().ToString();
-            Configuration config = ConfigurationManager.OpenExeConfiguration(targetPath + "\\"+ StartExe);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(targetPath + "\\" + StartExe);
             config.AppSettings.Settings["StartPath"].Value = targetPath;
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
@@ -471,7 +526,7 @@ namespace InstallPackageWPF
                 }
             }
             var shortcut = shell.CreateShortcut(startMenu + "\\卸载音乐教学客户端.lnk");
-            shortcut.TargetPath = targetPath + "\\"+ UninstallExe;
+            shortcut.TargetPath = targetPath + "\\" + UninstallExe;
             shortcut.WorkingDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
             shortcut.Save();
         }
