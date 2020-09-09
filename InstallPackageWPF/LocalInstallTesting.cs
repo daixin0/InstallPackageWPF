@@ -425,9 +425,9 @@ namespace InstallPackageWPF
                 }
                 else
                 {
-                    if (!Path.GetExtension(fileName).Contains("config") && (index == str.Length - 3) && str.Length >= 3)
+                    if (!Path.GetExtension(fileName).Contains("config") && (index <= str.Length - 3) && str.Length >= 3)
                         fileName = str[index] + "/" + fileName;
-                    else if (Path.GetExtension(fileName).Contains("config") && (index == str.Length - 4) && str.Length >= 4)
+                    else if (Path.GetExtension(fileName).Contains("config") && (index <= str.Length - 4) && str.Length >= 4)
                         fileName = str[index] + "/" + fileName;
                     else
                         fileName = str[index] + "." + fileName;
@@ -457,7 +457,7 @@ namespace InstallPackageWPF
                     {
                         CopyEmbedFile(targetPath, fileName, item);
                     }
-                    else
+                    else 
                     {
                         continue;
                     }
