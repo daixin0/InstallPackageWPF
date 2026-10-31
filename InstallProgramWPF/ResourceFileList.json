@@ -1,0 +1,240 @@
+[
+  {
+    "FileName": "Activities.dll",
+    "FilePath": "Activities.dll",
+    "ResourceName": "Activities.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.BootstrapperApplication.dll",
+    "FilePath": "Filigree.BootstrapperApplication.dll",
+    "ResourceName": "Filigree.BootstrapperApplication.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Controls.dll",
+    "FilePath": "Filigree.Controls.dll",
+    "ResourceName": "Filigree.Controls.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Core.dll",
+    "FilePath": "Filigree.Core.dll",
+    "ResourceName": "Filigree.Core.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Core.MessageFrame.dll",
+    "FilePath": "Filigree.Core.MessageFrame.dll",
+    "ResourceName": "Filigree.Core.MessageFrame.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Core.Mvvm.dll",
+    "FilePath": "Filigree.Core.Mvvm.dll",
+    "ResourceName": "Filigree.Core.Mvvm.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Core.Tool.dll",
+    "FilePath": "Filigree.Core.Tool.dll",
+    "ResourceName": "Filigree.Core.Tool.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Module.Core.dll",
+    "FilePath": "Filigree.Module.Core.dll",
+    "ResourceName": "Filigree.Module.Core.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.BootstrapperApplication.dll",
+    "FilePath": "Filigree\\Filigree.BootstrapperApplication.dll",
+    "ResourceName": "Filigree.Filigree.BootstrapperApplication.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Controls.dll",
+    "FilePath": "Filigree\\Filigree.Controls.dll",
+    "ResourceName": "Filigree.Filigree.Controls.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Core.AuthorizationManagement.dll",
+    "FilePath": "Filigree\\Filigree.Core.AuthorizationManagement.dll",
+    "ResourceName": "Filigree.Filigree.Core.AuthorizationManagement.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Core.dll",
+    "FilePath": "Filigree\\Filigree.Core.dll",
+    "ResourceName": "Filigree.Filigree.Core.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Core.MessageFrame.dll",
+    "FilePath": "Filigree\\Filigree.Core.MessageFrame.dll",
+    "ResourceName": "Filigree.Filigree.Core.MessageFrame.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Core.Mvvm.dll",
+    "FilePath": "Filigree\\Filigree.Core.Mvvm.dll",
+    "ResourceName": "Filigree.Filigree.Core.Mvvm.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Core.PropertyValidation.dll",
+    "FilePath": "Filigree\\Filigree.Core.PropertyValidation.dll",
+    "ResourceName": "Filigree.Filigree.Core.PropertyValidation.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Core.Tool.dll",
+    "FilePath": "Filigree\\Filigree.Core.Tool.dll",
+    "ResourceName": "Filigree.Filigree.Core.Tool.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Filigree.Module.Core.dll",
+    "FilePath": "Filigree\\Filigree.Module.Core.dll",
+    "ResourceName": "Filigree.Filigree.Module.Core.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "LanguagePackResource.dll",
+    "FilePath": "Filigree\\LanguagePackResource.dll",
+    "ResourceName": "Filigree.LanguagePackResource.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Microsoft.Practices.ServiceLocation.dll",
+    "FilePath": "Filigree\\Microsoft.Practices.ServiceLocation.dll",
+    "ResourceName": "Filigree.Microsoft.Practices.ServiceLocation.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "System.Windows.Interactivity.dll",
+    "FilePath": "Filigree\\System.Windows.Interactivity.dll",
+    "ResourceName": "Filigree.System.Windows.Interactivity.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "install.ico",
+    "FilePath": "install.ico",
+    "ResourceName": "install.ico",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "installLogo.png",
+    "FilePath": "installLogo.png",
+    "ResourceName": "installLogo.png",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "JetBrains.Annotations.dll",
+    "FilePath": "JetBrains.Annotations.dll",
+    "ResourceName": "JetBrains.Annotations.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Microsoft.Expression.Interactions.dll",
+    "FilePath": "Microsoft.Expression.Interactions.dll",
+    "ResourceName": "Microsoft.Expression.Interactions.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Microsoft.Practices.ServiceLocation.dll",
+    "FilePath": "Microsoft.Practices.ServiceLocation.dll",
+    "ResourceName": "Microsoft.Practices.ServiceLocation.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "ModularityIDEDemo.exe",
+    "FilePath": "ModularityIDEDemo.exe",
+    "ResourceName": "ModularityIDEDemo.exe",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "ModularityIDEDemo.exe.config",
+    "FilePath": "ModularityIDEDemo.exe.config",
+    "ResourceName": "ModularityIDEDemo.exe.config",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Module.Test.Models.dll",
+    "FilePath": "Module.Test.Models.dll",
+    "ResourceName": "Module.Test.Models.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Module.Test.ViewModels.dll",
+    "FilePath": "Module.Test.ViewModels.dll",
+    "ResourceName": "Module.Test.ViewModels.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "Module.Test.Views.dll",
+    "FilePath": "Module.Test.Views.dll",
+    "ResourceName": "Module.Test.Views.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "System.Windows.Interactivity.dll",
+    "FilePath": "System.Windows.Interactivity.dll",
+    "ResourceName": "System.Windows.Interactivity.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "ThemeResources.dll",
+    "FilePath": "ThemeResources.dll",
+    "ResourceName": "ThemeResources.dll",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "UninstallProgramWPF.exe",
+    "FilePath": "UninstallProgramWPF.exe",
+    "ResourceName": "UninstallProgramWPF.exe",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  },
+  {
+    "FileName": "UpdateProgramWPF.exe",
+    "FilePath": "UpdateProgramWPF.exe",
+    "ResourceName": "UpdateProgramWPF.exe",
+    "IsJsonFile": false,
+    "IsIcoImage": false
+  }
+]

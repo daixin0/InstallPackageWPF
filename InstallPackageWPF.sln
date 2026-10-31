@@ -1,21 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29709.97
+# Visual Studio Version 18
+VisualStudioVersion = 18.9.12128.139
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallPackageWPF", "InstallPackageWPF\InstallPackageWPF.csproj", "{175A6127-2198-444C-AD34-054C98CF9802}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallProgramWPF", "InstallProgramWPF\InstallProgramWPF.csproj", "{175A6127-2198-444C-AD34-054C98CF9802}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UninstallPackageWPF", "UninstallPackageWPF\UninstallPackageWPF.csproj", "{71F2EE55-16C3-40DB-82C1-6D28283108DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UninstallProgramWPF", "UninstallProgramWPF\UninstallProgramWPF.csproj", "{71F2EE55-16C3-40DB-82C1-6D28283108DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateWindowProgram", "UpdateWindowProgram\UpdateWindowProgram.csproj", "{2DF6F7CA-C61A-4705-A38C-CBC0C38BA332}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicTeachingWindow", "MusicTeachingWindow\MusicTeachingWindow.csproj", "{0C9A8781-C147-4839-8ADD-9FFF3746F8D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateProgramWPF", "UpdateProgramWPF\UpdateProgramWPF.csproj", "{2DF6F7CA-C61A-4705-A38C-CBC0C38BA332}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sponsor", "Sponsor", "{1D413286-DED0-4CCA-AD0B-FC13C00619BD}"
 	ProjectSection(SolutionItems) = preProject
 		Sponsor\weixin.JPG = Sponsor\weixin.JPG
 		Sponsor\zhifubao.JPG = Sponsor\zhifubao.JPG
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContinuousDeliveryMainProgram", "ContinuousDeliveryMainProgram\ContinuousDeliveryMainProgram.csproj", "{BB4303C8-D5D6-C89B-3AE9-66C619926E73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{2DF6F7CA-C61A-4705-A38C-CBC0C38BA332}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DF6F7CA-C61A-4705-A38C-CBC0C38BA332}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DF6F7CA-C61A-4705-A38C-CBC0C38BA332}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C9A8781-C147-4839-8ADD-9FFF3746F8D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C9A8781-C147-4839-8ADD-9FFF3746F8D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C9A8781-C147-4839-8ADD-9FFF3746F8D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C9A8781-C147-4839-8ADD-9FFF3746F8D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB4303C8-D5D6-C89B-3AE9-66C619926E73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB4303C8-D5D6-C89B-3AE9-66C619926E73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB4303C8-D5D6-C89B-3AE9-66C619926E73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB4303C8-D5D6-C89B-3AE9-66C619926E73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <SolutionDir Condition="'$(SolutionDir)' == '' Or '$(SolutionDir)' == '*Undefined*'">$(MSBuildThisFileDirectory)..\</SolutionDir>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <DebugType>embedded</DebugType>
+    <OutputPath>$(SolutionDir)\Output</OutputPath>
+    <BaseOutputPath>$(SolutionDir)\Output</BaseOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Management" Version="10.0.0" />
+  </ItemGroup>
+  <PropertyGroup Label="InstallerPackageProperties">
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <OutputPath>$(SolutionDir)\Output</OutputPath>
+    <BaseOutputPath>$(SolutionDir)\Output</BaseOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <ApplicationIcon>install.ico</ApplicationIcon>
+    <AssemblyName>InstallProgramWPF</AssemblyName>
+    <RootNamespace>InstallProgramWPF</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup Label="InstallerPackageResources">
+    <EmbeddedResource Include="ResourceFileList.json">
+      <LogicalName>$(RootNamespace).ResourceFileList.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstallerProductInfo.json">
+      <LogicalName>$(RootNamespace).InstallerProductInfo.json</LogicalName>
+    </EmbeddedResource>
+    <Resource Include="install.ico" />
+    <Resource Include="installLogo.png" />
+  </ItemGroup>
+  <PropertyGroup Label="InstallerSingleFileOutput">
+    <OutputPath>$(MSBuildProjectDirectory)\..\Output\Build\$(Configuration)\</OutputPath>
+    <PublishDir>$(MSBuildProjectDirectory)\..\Output\</PublishDir>
+  </PropertyGroup>
+  <Target Name="PublishSingleExeAfterBuild" AfterTargets="Build" Condition="'$(DesignTimeBuild)' != 'true' and '$(AutoPublishRunning)' != 'true' and '$(NoBuild)' != 'true'">
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="Publish" BuildInParallel="false" Properties="Configuration=$(Configuration);NoBuild=true;AutoPublishRunning=true" />
+  </Target>
+  <Target Name="RemoveLegacyInstallerBuildFiles" AfterTargets="Publish" Condition="'$(PublishSingleFile)' == 'true' and Exists('$(PublishDir)$(AssemblyName).exe')">
+    <Delete Files="$(PublishDir)$(AssemblyName).dll;$(PublishDir)$(AssemblyName).deps.json;$(PublishDir)$(AssemblyName).runtimeconfig.json;$(PublishDir)$(AssemblyName).pdb" />
+  </Target>
+</Project>

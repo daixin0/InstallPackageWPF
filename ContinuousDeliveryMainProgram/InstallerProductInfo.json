@@ -1,0 +1,20 @@
+{
+  // 对应 F:/GitCode/Filigree/Output/ModularityIDEDemo.exe，文件版本 1.0.0.0。
+  // 支持 JSON 注释和末尾逗号；打包工具会生成不含注释的标准 JSON，再嵌入安装程序。
+  // install.ico、installLogo.png 位于 F:/GitCode/Filigree/Output，随待安装文件一起打包；不会替换原程序 EXE 图标。
+  "AppIco": "ModularityIDEDemo.exe", // 相对于安装目录，使用主程序内置图标
+  "ControlPanelDisplayName": "Filigree Modularity IDE Demo", // 控制面板卸载入口指向 UninstallProgramWPF.exe
+  "Version": "1.0.0.0", // 当前 WPF 安装界面加载时会用安装程序集版本覆盖
+  "Publisher": "莓用良品科技有限公司", // 原 EXE 的 CompanyName 为空，确认发布者后可填写
+  "DefaultInstallPath": "Filigree", // 自动添加磁盘根路径，例如 C:\Filigree
+  "StartMenuGroupName": "Filigree", // 保留桌面和开始菜单启动快捷方式
+  "UninstallExe": "UninstallProgramWPF.exe", // 按 UninstallerConfig.json 自动生成的自包含卸载器，无需额外复制工具 DLL
+  "UninstallShortcutName": "卸载 Filigree", // 开始菜单中的卸载快捷方式名称
+  "StartExe": "ModularityIDEDemo.exe", // 实际启动程序文件名，包含 .exe
+  "DisplayName": "Filigree Modularity IDE Demo", // 安装界面标题及启动快捷方式名称
+  "InstallGuid": "{328EB01E-3D87-42B8-80CF-18D156F56879}", // 产品 GUID；同一产品后续版本保持一致，不同产品使用不同值
+  "RegistryKey": "", // 可选兼容注册表路径；留空关闭，启用时必须是两段名称，例如 Product/Settings
+  "MainProgram": "ModularityIDEDemo", // 实际进程名，不包含 .exe
+  "ProgramEnvironmentVariable": "", // StartExe 为空时用于定位主程序目录的环境变量名称
+  "RegistryTag": "Filigree.ModularityIDEDemo" // 稳定产品标识；启用卸载登记时，卸载器需使用相同标识规则
+}

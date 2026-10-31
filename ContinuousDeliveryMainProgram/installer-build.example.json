@@ -1,0 +1,30 @@
+{
+  "UIFramework": "Wpf", // 可选 Wpf 或 Avalonia；决定图片资源类型和 UseWPF
+  // 输入路径相对于本配置文件；安装包默认输出到仓库根目录的 Output。
+  "PayloadDirectory": "F:/GitCode/Filigree/Output", // 主程序需 .NET Framework 4.7.2 或兼容版本；自动生成的更新器、卸载器是自包含 EXE
+  "ConfigPath": "./InstallerProductInfo.json", // 安装程序读取的产品信息文件
+  "UninstallerConfigPath": "./UninstallerConfig.json", // 按此配置生成卸载程序；null 表示不生成
+  "UpdaterConfigPath": "./UpdaterConfig.json", // 按此配置生成更新程序；null 表示不生成
+  "IconPath": "F:/GitCode/Filigree/Output/install.ico", // 待安装程序目录中的安装图标
+  "LogoPath": "F:/GitCode/Filigree/Output/installLogo.png", // 待安装程序目录中的安装界面图片
+
+  "Project": {
+    "AssemblyName": "InstallProgramWPF", // 生成的 EXE 名称，不含 .exe；null 表示沿用项目值
+    "RootNamespace": "InstallProgramWPF", // 资源名称的命名空间前缀；null 表示沿用项目值
+    "TargetFramework": "net10.0-windows", // 目标框架，需要安装对应 .NET SDK
+  },
+
+  "Resources": {
+    // 以下名称相对于安装项目目录；每项只能是单个名称，不能包含目录分隔符。
+    // 更改清单、配置、Logo 名称或命名空间后，安装程序读取资源的代码也必须对应修改。
+    "ConfigFileName": "InstallerProductInfo.json", // ConfigPath 复制后的名称
+    "IconFileName": "install.ico", // 安装程序图标复制后的名称，同时写入 ApplicationIcon
+    "LogoFileName": "installLogo.png", // Logo 复制后的名称
+    "ExcludedExtensions": [ ".pdb", ".log" ] // 排除调试符号和运行日志，保留 EXE、DLL、exe.config
+  }
+}
+
+
+
+
+

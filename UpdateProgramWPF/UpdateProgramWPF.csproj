@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <ProgramConfigurationPath Condition="'$(ProgramConfigurationPath)' == ''">$(MSBuildThisFileDirectory)..\ContinuousDeliveryMainProgram\UpdaterConfig.json</ProgramConfigurationPath>
+    <SolutionDir Condition="'$(SolutionDir)' == '' Or '$(SolutionDir)' == '*Undefined*'">$(MSBuildThisFileDirectory)..\</SolutionDir>
+    <OutputPath>$(SolutionDir)\Output</OutputPath>
+    <BaseOutputPath>$(SolutionDir)\Output</BaseOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\ContinuousDeliveryMainProgram\ProgramConfiguration\MaintenanceConfiguration.cs" Link="Configuration\MaintenanceConfiguration.cs" />
+    <EmbeddedResource Include="$(ProgramConfigurationPath)" LogicalName="ProgramConfiguration.json" />
+    <PackageReference Include="System.Management" Version="10.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.0" />
+  </ItemGroup>
+</Project>

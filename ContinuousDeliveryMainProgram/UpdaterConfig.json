@@ -1,0 +1,12 @@
+{
+  // 更换产品时修改这些参数，并与 InstallerProductInfo.json 保持一致。
+  // 当前版本和安装目录从注册表读取，不由用户填写。
+  "DisplayName": "Filigree Modularity IDE Demo", // 更新窗口中的产品名称
+  "MainProgram": "ModularityIDEDemo", // 安装新版本前检查的进程名，不含 .exe
+  "RegistryTag": "Filigree.ModularityIDEDemo", // 必须与安装器和卸载器一致
+  "StartExe": "ModularityIDEDemo.exe", // 注册安装目录中应存在的主程序 EXE
+  "VersionManifestUrl": "", // 暂无更新服务，留空将提示尚未配置；有服务后填写版本清单的 HTTPS 地址
+  // 接口返回 JSON：{"releaseVersion":"1.0.1.0","installerFileUrl":"https://.../setup.exe","installerFileSha256":"64位十六进制SHA256"}
+  // 新版本由完整安装包安装，不配置当前版本、下载缓存路径或机器标识。
+  "RequestTimeoutSeconds": 30 // 查询和下载的网络超时，范围 1–600 秒
+}

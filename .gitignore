@@ -33,6 +33,8 @@ bld/
 #wwwroot/
 
 # Visual Studio 2017 auto generated files
+Output/InstallProgramWPF.exe
+Output/Build/
 Generated\ Files/
 
 # MSTest test Results

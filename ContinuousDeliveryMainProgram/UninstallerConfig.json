@@ -1,0 +1,10 @@
+{
+  // 更换产品时修改这些参数，并与 InstallerProductInfo.json 保持一致。
+  // 安装目录、卸载 EXE 路径从注册表读取；机器标识和安装时间无需配置。
+  "DisplayName": "Filigree Modularity IDE Demo", // 提示文字及桌面快捷方式名称
+  "MainProgram": "ModularityIDEDemo", // 卸载前检查的进程名，不含 .exe
+  "RegistryTag": "Filigree.ModularityIDEDemo", // 产品注册表标识；同一产品的后续版本必须保持一致
+  "StartMenuGroupName": "Filigree", // 开始菜单分组；与安装器一致，留空表示不创建快捷方式
+  "UninstallShortcutName": "卸载 Filigree", // 开始菜单中的卸载快捷方式名称
+  "PreservedDirectories": ["Resources"] // 未勾选“删除所有资源数据”时保留的安装目录下一级文件夹；[] 表示不保留
+}
